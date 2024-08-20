@@ -240,9 +240,11 @@ h1 {
   padding: 3em;
 }
 
+/* Apply the same styles to text inputs and textarea */
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
   font-size: 0.9em;
   color: #fff;
   font-weight: 100;
@@ -260,6 +262,12 @@ input[type="password"] {
   background-repeat: no-repeat;
   color: #fff;
   font-family: "Roboto", sans-serif;
+}
+
+/* Additional styles for textarea */
+textarea {
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 150px; /* Set a minimum height */
 }
 
 input.email,
