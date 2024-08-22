@@ -77,6 +77,40 @@
                     <li><a href="#">Marketing</a></li>
                   </ul>
                 </div><!-- End meta bottom -->
+                <br><br>
+                <div class="nav-container">
+                  <div
+                    class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                    {% if prev_post %}
+                    <div class="thumb">
+                      <a href="{% url 'blog:single' prev_post.id %}">
+                        <img class="img-fluid" src="{{ prev_post.image.url }}" alt="{{ prev_post.title }}" />
+                      </a>
+                    </div>
+                    <div class="details">
+                      <a href="{% url 'blog:single' prev_post.id %}">
+                        &laquo; Previous: {{ prev_post.title }}
+                      </a>
+                    </div>
+                    {% endif %}
+                  </div>
+                  <div
+                    class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                    {% if next_post %}
+                    <div class="details">
+                      <a href="{% url 'blog:single' next_post.id %}">
+                        Next: {{ next_post.title }} &raquo;
+                      </a>
+                    </div>
+                    <div class="thumb">
+                      <a href="{% url 'blog:single' next_post.id %}">
+                        <img class="img-fluid" src="{{ next_post.image.url }}" alt="{{ next_post.title }}" />
+                      </a>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+
 
               </article>
 
