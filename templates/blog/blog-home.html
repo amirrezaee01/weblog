@@ -30,10 +30,10 @@
           <article>
 
             <div class="post-img">
-              <img src="{% static 'img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+              <img src="{{post.image.url}}" alt="" class="img-fluid">
             </div>
 
-            <p class="post-category">Politics</p>
+            <p class="post-category">{{post.category.all|join:", "}}</p>
             <h5 class="post-counted_view">{{post.counted_views}} views</h5>
             <br>
 
@@ -45,9 +45,9 @@
             </h5>
 
             <div class="d-flex align-items-center">
-              <img src="{% static 'img/blog/blog-author.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
+              <img src="{{post.image.url}}" alt="" class="img-fluid post-author-img flex-shrink-0">
               <div class="post-meta">
-                <p class="post-author">Maria Doe</p>
+                <p class="post-author">{{post.author.get_full_name}}</p>
                 <p class="post-date">
                   {{post.published_date|naturaltime}}
                 </p>

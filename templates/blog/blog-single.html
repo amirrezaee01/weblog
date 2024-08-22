@@ -35,15 +35,15 @@
               <article class="article">
 
                 <div class="post-img">
-                  <img src="{% static 'img/blog/blog-1.jpg' %}" alt="" class="img-fluid">
+                  <img src="{{post.image.url}}" alt="" class="img-fluid">
                 </div>
 
                 <h2 class="title">{{post.title}}</h2>
 
                 <div class="meta-top">
                   <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">John
-                        Doe</a></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                        href="#">{{post.author.get_full_name}}</a></li>
                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">
                         {{post.published_date|naturaltime}}</a></li>
                     <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#">12
@@ -249,8 +249,8 @@
             <div class="blog-author-widget widget-item">
 
               <div class="d-flex flex-column align-items-center">
-                <img src="{% static 'img/blog/blog-author.jpg' %}" class="rounded-circle flex-shrink-0" alt="">
-                <h4>Jane Smith</h4>
+                <img src="{{post.image.url}}" class="rounded-circle flex-shrink-0" alt="">
+                <h4>{{post.author.get_full_name}}</h4>
                 <div class="social-links">
                   <a href="https://x.com/#"><i class="bi bi-twitter-x"></i></a>
                   <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
