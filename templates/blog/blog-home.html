@@ -33,7 +33,12 @@
               <img src="{{post.image.url}}" alt="" class="img-fluidd">
             </div>
 
-            <p class="post-category">{{post.category.all|join:", "}}</p>
+            <p class="post-category">
+              {% for cat in post.category.all %}
+              <a href="#">{{cat.name}}</a> {% if not forloop.last %},{% endif %}
+              {% endfor %}
+            </p>
+
             <h5 class="post-counted_view">{{post.counted_views}} views</h5>
             <br>
 
