@@ -9,3 +9,9 @@ def latestpost():
     now = timezone.now()
     posts = Post.objects.filter(published_date__lte=now,status=1).order_by('-published_date')[:3]
     return{'posts':posts}
+
+@register.inclusion_tag('website/team.html')
+def teampost():
+    now = timezone.now()
+    posts = Post.objects.filter(published_date__lte=now,status=1).order_by('published_date')[:4]
+    return{'posts':posts}
