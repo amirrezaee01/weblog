@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load website_tags %}
+
 {% load static %}
 
 
@@ -79,7 +81,7 @@
     <!-- /Team Section -->
 
     <!-- Recent Posts Section -->
-    {% include 'website/latest_post.html' %}
+    {% latestpost %}
     <!-- /Recent Posts Section -->
 
 
