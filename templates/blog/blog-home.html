@@ -77,15 +77,31 @@
     <div class="container">
       <div class="d-flex justify-content-center">
         <ul>
-          <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#" class="active">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li>...</li>
-          <li><a href="#">10</a></li>
-          <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+          {% if posts.has_previous %}
+          <li>
+            <a href="?page={{ posts.previous_page_number }}">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+          {% endif %}
+
+          {% for i in posts.paginator.page_range %}
+          <li>
+            <a href="?page={{ i }}" class="{% if posts.number == i %}active{% endif %}">
+              {{ i }}
+            </a>
+          </li>
+          {% endfor %}
+
+          {% if posts.has_next %}
+          <li>
+            <a href="?page={{ posts.next_page_number }}">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+          {% endif %}
         </ul>
+
       </div>
     </div>
 

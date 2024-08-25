@@ -1,19 +1,34 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from django.utils import timezone
-# Create your views here.
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import Http404
 
-def blog_view(request,**kwargs):
+def blog_view(request, **kwargs):
     now = timezone.now()
-    posts = Post.objects.filter(published_date__lte=now,status=1)
-    if kwargs.get('cat_name') != None:
-        posts = posts.filter(category__name = kwargs['cat_name'])
-    if kwargs.get('author_username') != None:
-        posts = posts.filter(author__username = kwargs['author_username'])
-        
-    context = {'posts':posts}
-    return render(request,'blog/blog-home.html',context)
+    posts = Post.objects.filter(published_date__lte=now, status=1)
     
+    if kwargs.get('cat_name') is not None:
+        posts = posts.filter(category__name=kwargs['cat_name'])
+        
+    if kwargs.get('author_username') is not None:
+        posts = posts.filter(author__username=kwargs['author_username'])
+        
+    paginator = Paginator(posts, 6)
+    
+    try:
+        page_number = request.GET.get('page')
+        posts = paginator.page(page_number)  
+    except PageNotAnInteger:
+        posts = paginator.page(1)  
+    except EmptyPage:
+        posts = paginator.page(1)  
+        
+    
+    context = {'posts': posts}
+    return render(request, 'blog/blog-home.html', context)
+
+
 def blog_single(request,pid):
     now = timezone.now()
 
