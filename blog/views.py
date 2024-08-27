@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from blog.models import Post
+from blog.models import Post,Comment
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
+from blog.forms import CommentForm
+from django.contrib import messages
+
 
 def blog_view(request, **kwargs):
     now = timezone.now()
@@ -33,6 +36,14 @@ def blog_view(request, **kwargs):
 
 
 def blog_single(request,pid):
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your comment was submitted successfully.')
+        else:
+            messages.error(request, 'There was an error with your submission. Please correct the errors below.')
+            
     now = timezone.now()
 
     post = get_object_or_404(Post, published_date__lte=now, pk=pid, status=1)
@@ -47,10 +58,15 @@ def blog_single(request,pid):
     prev_post = posts[current_index - 1] if current_index > 0 else None
     next_post = posts[current_index + 1] if current_index < len(post_ids) - 1 else None
     
+    comments = Comment.objects.filter(post=post.id,).order_by('-created_date')
+    form = CommentForm()
+
+    
     context = {
         'post': post,
         'prev_post': prev_post,
         'next_post': next_post,
+        'comments' :  comments,
     }
     return render(request,'blog/blog-single.html',context)
     
