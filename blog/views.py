@@ -58,7 +58,7 @@ def blog_single(request,pid):
     prev_post = posts[current_index - 1] if current_index > 0 else None
     next_post = posts[current_index + 1] if current_index < len(post_ids) - 1 else None
     
-    comments = Comment.objects.filter(post=post.id,).order_by('-created_date')
+    comments = Comment.objects.filter(post=post.id,)
     form = CommentForm()
 
     
