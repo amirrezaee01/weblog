@@ -1,132 +1,64 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>login Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script
-        type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- Custom Theme files -->
-    <link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css" media="all" />
-    <!-- //Custom Theme files -->
-    <!-- web font -->
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
-    <!-- //web font -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <style>
+        .cardbody-color {
+            background-color: #f8f9fa;
+        }
+
+        .btn-color {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .profile-image-pic {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- main -->
-    <div id="container" class="container">
-        <!-- FORM SECTION -->
+    <div class="container">
         <div class="row">
-            <!-- SIGN UP -->
-            <div class="col align-items-center flex-col sign-up">
-                <div class="form-wrapper align-items-center">
-                    <div class="form sign-up">
-                        <div class="input-group">
-                            <i class='bx bxs-user'></i>
-                            <input type="text" placeholder="Username">
-                        </div>
-                        <div class="input-group">
-                            <i class='bx bx-mail-send'></i>
-                            <input type="email" placeholder="Email">
-                        </div>
-                        <div class="input-group">
-                            <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="input-group">
-                            <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="Confirm password">
-                        </div>
-                        <button>
-                            Sign up
-                        </button>
-                        <p>
-                            <span>
-                                Already have an account?
-                            </span>
-                            <b onclick="toggle()" class="pointer">
-                                Sign in here
-                            </b>
-                        </p>
-                    </div>
-                </div>
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center text-dark mt-5">Login Form</h2>
+                <div class="text-center mb-5 text-dark"></div>
+                <div class="card my-5">
+                    <form class="card-body cardbody-color p-lg-5" method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
 
-            </div>
-            <!-- END SIGN UP -->
-            <!-- SIGN IN -->
-            <div class="col align-items-center flex-col sign-in">
-                <div class="form-wrapper align-items-center">
-                    <div class="form sign-in">
-                        <div class="input-group">
-                            <i class='bx bxs-user'></i>
-                            <input type="text" placeholder="Username">
+                        <div class="text-center">
+                            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+                                class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
+                                alt="profile">
                         </div>
-                        <div class="input-group">
-                            <i class='bx bxs-lock-alt'></i>
-                            <input type="password" placeholder="Password">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="User Name"
+                                name="username">
                         </div>
-                        <button>
-                            Sign in
-                        </button>
-                        <p>
-                            <a href="#">
-                                Forgot password?
-                            </a>
-                        </p>
-                        <p>
-                            <span>
-                                Don't have an account?
-                            </span>
-                            <b onclick="toggle()" class="pointer">
-                                Sign up here
-                            </b>
-                        </p>
-                    </div>
-                </div>
-                <div class="form-wrapper">
-
+                        <div class="mb-3">
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button>
+                        </div>
+                        <div id="emailHelp" class="form-text text-center mb-5 text-dark">
+                            Not Registered? <a href="#" class="text-dark fw-bold">Create an Account</a>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <!-- END SIGN IN -->
         </div>
-        <!-- END FORM SECTION -->
-        <!-- CONTENT SECTION -->
-        <div class="row content-row">
-            <!-- SIGN IN CONTENT -->
-            <div class="col align-items-center flex-col">
-                <div class="text sign-in">
-                    <h2>
-                        Welcome
-                    </h2>
-
-                </div>
-                <div class="img sign-in">
-
-                </div>
-            </div>
-            <!-- END SIGN IN CONTENT -->
-            <!-- SIGN UP CONTENT -->
-            <div class="col align-items-center flex-col">
-                <div class="img sign-up">
-
-                </div>
-                <div class="text sign-up">
-                    <h2>
-                        Join with us
-                    </h2>
-
-                </div>
-            </div>
-            <!-- END SIGN UP CONTENT -->
-        </div>
-        <!-- END CONTENT SECTION -->
     </div>
-    <script src="{% static 'js/login.js' %}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
@@ -40,27 +40,38 @@
   ======================================================== -->
 </head>
 
-<header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<body>
+    <header class="header d-flex align-items-center fixed-top">
 
-        <a href="{% url 'website:index' %}" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="{% static 'img/logo.png' %}" alt=""> -->
-            <h1 class="sitename">Matrix</h1>
-        </a>
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-        <nav class="navmenu">
-            <ul>
-                <li><a href="{% url 'website:index' %}" class="active">Home</a></li>
-                <li><a href="{% url 'website:about' %}">About</a></li>
-                <li><a href="{% url 'blog:index' %}">Blog</a></li>
-                <li><a href="{% url 'website:contact' %}">Contact</a></li>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+            <a href="{% url 'website:index' %}" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="{% static 'img/logo.png' %}" alt=""> -->
+                <h1 class="sitename">Matrix</h1>
+            </a>
+            <nav class="navmenu">
+                <ul class="nav-list">
+                    <li><a href="{% url 'website:index' %}" class="active">Home</a></li>
+                    <li><a href="{% url 'website:about' %}">About</a></li>
+                    <li><a href="{% url 'blog:index' %}">Blog</a></li>
+                    <li><a href="{% url 'website:contact' %}">Contact</a></li>
 
-    </div>
-</header>
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                    {% endif %}
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+</body>
+
+</html>
+
 {% block content %}
 {% endblock %}
 <footer id="footer" class="footer dark-background">
