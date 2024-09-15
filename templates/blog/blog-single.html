@@ -160,7 +160,7 @@
                 <h4>Post Comment</h4>
                 <p>Your email address will not be published. Required fields are marked * </p>
 
-                <input type="hidden" name="name" value="{{ request.user.first_name }}">
+                <input type="hidden" name="name" value="{{ request.user.username }}">
                 <input type="hidden" name="email" value="{{ request.user.email }}">
 
                 <div class="row">

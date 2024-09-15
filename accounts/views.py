@@ -15,7 +15,6 @@ def login_view(request):
     if request.user.is_authenticated:
         return redirect('/')
 
-    # Get the 'next' parameter from the GET request (if present)
     next_url = request.GET.get('next', '/')
 
     if request.method == "POST":
@@ -25,7 +24,7 @@ def login_view(request):
             password = form.cleaned_data.get('password')
 
             user = None
-            if identifier:  # Ensure identifier is not None
+            if identifier:  
                 if '@' in identifier:
                     try:
                         user_obj = User.objects.get(email=identifier)
@@ -37,7 +36,6 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                # Use the next parameter from the POST request to redirect after login
                 next_url = request.POST.get('next', next_url)
                 return HttpResponseRedirect(next_url)
             else:
@@ -47,7 +45,6 @@ def login_view(request):
     else:
         form = CustomAuthenticationForm()
 
-    # Pass the 'next' parameter to the context to include it in the form
     context = {'form': form, 'next': next_url}
     return render(request, 'accounts/login.html', context)
 
