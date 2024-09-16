@@ -19,7 +19,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATICFILES_DIRS = [BASE_DIR / "statics"]
 
 # Django Compressor settings for development
-COMPRESS_ENABLED = False
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+
 COMPRESS_URL = STATIC_URL
 COMPRESS_ROOT = STATIC_ROOT
 
