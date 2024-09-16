@@ -14,12 +14,13 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = BASE_DIR / 'static'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = BASE_DIR / '/home/amirrez2/public_html/static'
+MEDIA_ROOT = BASE_DIR / '/home/amirrez2/public_html/media'
 STATICFILES_DIRS = [BASE_DIR / "statics"]
 
 # Enable compression in production
 COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
 COMPRESS_URL = STATIC_URL
 COMPRESS_ROOT = STATIC_ROOT
 
