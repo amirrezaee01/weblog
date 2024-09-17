@@ -5,7 +5,7 @@
     <h3 class="widget-title">Categories</h3>
     {% for name,count in categories.items %}
     <ul>
-        <a href="#" class="mt-3">
+        <a href="{% url 'blog:category' cat_name=name %}" class="mt-3">
             <p>{{name}}: {{count}}</p>
 
         </a>
